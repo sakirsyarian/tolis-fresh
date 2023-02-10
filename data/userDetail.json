@@ -1,0 +1,18 @@
+[
+    {
+        "firstName": "Super",
+        "lastName": "Admin",
+        "phoneNumber": "+62912345678",
+        "dateOfBirth": "2023-02-10 17:20:09.113 +0700",
+        "address": "Jl Jakarta Selatan, Gedung Aquarius",
+        "UserId": 1
+    },
+    {
+        "firstName": "Ahmad",
+        "lastName": "Sarian",
+        "phoneNumber": "+6288765432",
+        "dateOfBirth": "1996-12-16 14:00:00.110 +0700",
+        "address": "Jl Reni Jaya 3, Tangerang Selatan",
+        "UserId": 2
+    }
+]
