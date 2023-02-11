@@ -1,4 +1,7 @@
 'use strict';
+
+const { formatedAge, formatedDate } = require('../helpers/formated')
+
 const {
   Model
 } = require('sequelize');
@@ -13,6 +16,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       UserDetail.belongsTo(models.User)
     }
+
+    get age() {
+      return formatedAge(this.dateOfBirth)
+    }
+
+    get date() {
+      return formatedDate(this.dateOfBirth)
+    }
+
   }
   UserDetail.init({
     firstName: DataTypes.STRING,

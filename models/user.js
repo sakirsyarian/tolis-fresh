@@ -32,9 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     const salt = bycrypt.genSaltSync(10)
     const hash = bycrypt.hashSync(user.password, salt)
     user.password = hash
-    // user.RoleId = 2
-
-    console.log(user);
   })
 
   return User;

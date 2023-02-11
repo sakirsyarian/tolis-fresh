@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <h1>Register</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/register" method="POST">
+        <table>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td><input type="text" name="username" id="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="text" name="email" id="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" name="password" id="password" required></td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Sign up</button>
+    </form>
+
+    <%- include('../partials/_footer', { menu: "Register" }) %>
+</body>
+
+</html>

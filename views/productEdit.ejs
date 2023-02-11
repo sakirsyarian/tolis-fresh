@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('partials/_navbar') %>
+
+    <h1>Edit Product</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/products/edit/<%= product.id %>" method="POST">
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" name="name" value="<%= product.name %>"></td>
+            </tr>
+            <tr>
+                <td><label>Price</label></td>
+                <td><input type="number" name="price" value="<%= product.price %>"></td>
+            </tr>
+            <tr>
+                <td><label>Stock</label></td>
+                <td><input type="number" name="stock" value="<%= product.stock %>"></td>
+            </tr>
+            <tr>
+                <td><label>Expired</label></td>
+                <td><input type="date" name="expired" value="<%= product.dateOfExpired %>"></td>
+            </tr>
+            <tr>
+                <td><label>Image</label></td>
+                <td><input type="text" name="image" value="<%= product.image %>"></td>
+            </tr>
+            <tr>
+                <td><label>Description</label></td>
+                <td><textarea name="description"><%= product.description %></textarea></td>
+            </tr>
+            <tr>
+                <td><label>Category</label></td>
+                <td>
+                    <select name="CategoryId">
+                        <% categories.forEach(el => { %>
+                        <option value="<%= el.id %>" <%= product.CategoryId === el.id ? "selected" : "" %>><%= el.name %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Partner</label></td>
+                <td>
+                    <select name="PartnerId">
+                        <% partners.forEach(el => { %>
+                        <option value="<%= el.id %>" <%= product.PartnerId === el.id ? "selected" : "" %>><%= el.name %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <%- include('partials/_footer', { menu: "Edit Product" }) %>
+</body>
+
+</html>

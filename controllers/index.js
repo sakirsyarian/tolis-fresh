@@ -13,16 +13,15 @@ class Controller {
 
     static register(req, res) {
         const { error } = req.query
-        res.render('register', { error })
+        res.render('auth/register', { error })
     }
 
-    static registerPost(req, res) {
+    static registerCreate(req, res) {
         const { username, email, password } = req.body
 
         User.create({ username, email, password })
             .then(() => {
                 res.redirect('/login')
-                // res.send('Register success')
             })
             .catch(err => {
                 res.send(err)
@@ -31,10 +30,10 @@ class Controller {
 
     static login(req, res) {
         const { error } = req.query
-        res.render('login', { error })
+        res.render('auth/login', { error })
     }
 
-    static loginPost(req, res) {
+    static loginCreate(req, res) {
         const { username, password } = req.body
 
         User.findOne({ where: { username } })
@@ -55,8 +54,8 @@ class Controller {
     }
 
     static dashboard(req, res) {
-        const { username } = req.session
-        res.render('dashboard', { username })
+        const { username, userId } = req.session
+        res.render('dashboard', { username, userId })
     }
 
     static logout(req, res) {

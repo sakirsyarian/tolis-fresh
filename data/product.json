@@ -1,8 +1,8 @@
 [
     {
         "name": "Cheese - Valancey",
-        "price": "4740372",
-        "stock": 1,
+        "price": "47_403",
+        "stock": 11,
         "expired": "2023-02-03",
         "image": null,
         "description": null,
@@ -11,8 +11,8 @@
     },
     {
         "name": "Mushroom - White Button",
-        "price": "4828602",
-        "stock": 2,
+        "price": "48_286",
+        "stock": 19,
         "expired": "2022-12-03",
         "image": null,
         "description": null,
@@ -21,8 +21,8 @@
     },
     {
         "name": "Potatoes - Peeled",
-        "price": "1595028",
-        "stock": 3,
+        "price": "15_950",
+        "stock": 5,
         "expired": "2022-03-13",
         "image": null,
         "description": null,
@@ -31,8 +31,8 @@
     },
     {
         "name": "Soup - Campbells Beef Noodle",
-        "price": "4055352",
-        "stock": 4,
+        "price": "40_352",
+        "stock": 8,
         "expired": "2022-10-04",
         "image": null,
         "description": null,
@@ -41,8 +41,8 @@
     },
     {
         "name": "Squid U5 - Thailand",
-        "price": "1730832",
-        "stock": 5,
+        "price": "17_832",
+        "stock": 15,
         "expired": "2023-02-06",
         "image": null,
         "description": null,

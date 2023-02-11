@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('partials/_navbar') %>
+
+    <h1>Add Product</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/products/add" method="POST">
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td><label>Price</label></td>
+                <td><input type="number" name="price"></td>
+            </tr>
+            <tr>
+                <td><label>Stock</label></td>
+                <td><input type="number" name="stock"></td>
+            </tr>
+            <tr>
+                <td><label>Expired</label></td>
+                <td><input type="date" name="expired"></td>
+            </tr>
+            <tr>
+                <td><label>Image</label></td>
+                <td><input type="text" name="image"></td>
+            </tr>
+            <tr>
+                <td><label>Description</label></td>
+                <td><textarea name="description"></textarea></td>
+            </tr>
+            <tr>
+                <td><label>Category</label></td>
+                <td>
+                    <select name="CategoryId">
+                        <option value="" disabled selected>--Select Category--</option>
+                        <% dataCategories.forEach(el => { %>
+                        <option value="<%= el.id %>"><%= el.name %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Partner</label></td>
+                <td>
+                    <select name="PartnerId">
+                        <option value="" disabled selected>--Select Partner--</option>
+                        <% partners.forEach(el => { %>
+                        <option value="<%= el.id %>"><%= el.name %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <%- include('partials/_footer', { menu: "Add Product" }) %>
+</body>
+
+</html>

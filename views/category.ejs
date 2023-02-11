@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('partials/_navbar') %>
+
+    <section> <br>
+        <a href="/categories/add"><button>Add Category</button></a>
+    </section>
+
+    <h1>Category</h1>
+
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        <% categories.forEach((el, index) => { %>
+        <tr>
+            <td><%= ++index %></td>
+            <td><%= el.name %></td>
+            <td><%= el.image %></td>
+            <td>
+                <a href="/categories/edit/<%= el.id %>"><button>Edit</button></a>
+                <a href="/categories/delete/<%= el.id %>"><button>Delete</button></a>
+            </td>
+            <% }) %>
+    </table>
+
+    <%- include('partials/_footer', { menu: "Category" }) %>
+</body>
+
+</html>

@@ -1,4 +1,7 @@
 'use strict';
+
+const { formatedNumber, formatedDate } = require('../helpers/formated')
+
 const {
   Model
 } = require('sequelize');
@@ -14,6 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.Category)
       Product.belongsTo(models.Partner)
     }
+
+    get currencyId() {
+      return formatedNumber(this.price)
+    }
+
+    get dateOfExpired() {
+      return formatedDate(this.expired)
+    }
+
   }
   Product.init({
     name: DataTypes.STRING,
