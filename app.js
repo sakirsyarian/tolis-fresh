@@ -5,7 +5,7 @@ const express = require('express')
 const session = require('express-session')
 const app = express()
 const port = 3000
-const fiveMinutes = 1000 * 60 * 5
+const oneHour = 1000 * 60 * 60
 
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -15,7 +15,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: fiveMinutes,
+        maxAge: oneHour,
         secure: false,
         sameSite: true,
     }

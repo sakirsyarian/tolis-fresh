@@ -1,5 +1,6 @@
 'use strict'
 
+const bycrypt = require('bcryptjs')
 const { User } = require('../models')
 
 class Controller {
@@ -16,10 +17,12 @@ class Controller {
     }
 
     static registerPost(req, res) {
-        const { email, password } = req.body
-        User.create({ email, password })
+        const { username, email, password } = req.body
+
+        User.create({ username, email, password })
             .then(() => {
                 res.redirect('/login')
+                // res.send('Register success')
             })
             .catch(err => {
                 res.send(err)
@@ -36,7 +39,9 @@ class Controller {
 
         User.findOne({ where: { username } })
             .then(user => {
-                if (user && user.password === password) {
+                const isValidPassword = bycrypt.compareSync(password, user.password)
+
+                if (user && isValidPassword) {
                     req.session.userId = user.id
                     req.session.roleId = user.RoleId
                     req.session.username = user.username
@@ -50,7 +55,8 @@ class Controller {
     }
 
     static dashboard(req, res) {
-        res.render('dashboard')
+        const { username } = req.session
+        res.render('dashboard', { username })
     }
 
     static logout(req, res) {

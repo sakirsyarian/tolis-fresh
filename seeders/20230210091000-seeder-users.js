@@ -1,5 +1,7 @@
 'use strict';
+
 const fs = require('fs')
+const bycrypt = require('bcryptjs')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -18,6 +20,7 @@ module.exports = {
       .map(user => {
         user.createdAt = new Date()
         user.updatedAt = new Date()
+        user.password = bycrypt.hashSync(user.password, bycrypt.genSaltSync(10))
 
         return user
       })
