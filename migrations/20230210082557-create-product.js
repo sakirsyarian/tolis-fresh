@@ -36,7 +36,9 @@ module.exports = {
                 references: {
                     model: 'Categories',
                     key: 'id'
-                }
+                },
+                onUpdate: 'cascade',
+                onDelete: 'cascade'
             },
             PartnerId: {
                 type: Sequelize.INTEGER,
@@ -44,7 +46,9 @@ module.exports = {
                 references: {
                     model: 'Partners',
                     key: 'id'
-                }
+                },
+                onUpdate: 'cascade',
+                onDelete: 'cascade'
             },
             createdAt: {
                 allowNull: false,

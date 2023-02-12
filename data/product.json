@@ -1,51 +1,51 @@
 [
     {
         "name": "Cheese - Valancey",
-        "price": "47_403",
+        "price": "47403",
         "stock": 11,
         "expired": "2023-02-03",
-        "image": null,
-        "description": null,
+        "image": "cheese.png",
+        "description": "nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla",
         "CategoryId": 1,
         "PartnerId": 1
     },
     {
         "name": "Mushroom - White Button",
-        "price": "48_286",
+        "price": "48286",
         "stock": 19,
         "expired": "2022-12-03",
-        "image": null,
-        "description": null,
+        "image": "mushroom.png",
+        "description": "lorem ipsum dolor sit amet ultrices phasellus id sapien in sapien iaculis congue",
         "CategoryId": 2,
         "PartnerId": 2
     },
     {
         "name": "Potatoes - Peeled",
-        "price": "15_950",
+        "price": "15950",
         "stock": 5,
         "expired": "2022-03-13",
-        "image": null,
-        "description": null,
+        "image": "potatoes.png",
+        "description": "hhgsds sdfsdfsd dolor sdfdfgs amet asdasdsdg in sapien iaculis sdf",
         "CategoryId": 3,
         "PartnerId": 3
     },
     {
         "name": "Soup - Campbells Beef Noodle",
-        "price": "40_352",
+        "price": "40352",
         "stock": 8,
         "expired": "2022-10-04",
-        "image": null,
-        "description": null,
+        "image": "soup.png",
+        "description": "sdfsdg elit ac sdf sed sdf sdf sit sdfsdf nunc viverra dapibus nulsdfsdfla",
         "CategoryId": 4,
         "PartnerId": 4
     },
     {
         "name": "Squid U5 - Thailand",
-        "price": "17_832",
+        "price": "17832",
         "stock": 15,
         "expired": "2023-02-06",
-        "image": null,
-        "description": null,
+        "image": "squid.png",
+        "description": "dfsdf sdfsdf fghfghfh sfsdfs fsd dfhgdfghfghfg sdfsdfs dfsddf",
         "CategoryId": 5,
         "PartnerId": 5
     }

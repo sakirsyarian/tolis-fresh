@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <h1>Edit User</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/users/edit/<%= user.id %>" method="POST">
+        <table>
+            <tr>
+                <td><label>Username</label></td>
+                <td><input type="text" name="username" value="<%= user.username %>"></td>
+            </tr>
+            <tr>
+                <td><label>Email</label></td>
+                <td><input type="text" name="email" value="<%= user.email %>"></td>
+            </tr>
+            <tr>
+                <td><label>Role</label></td>
+                <td>
+                    <select name="RoleId">
+                        <% dataRoles.forEach(el => { %>
+                        <option value="<%= el.id %>" <%= user.RoleId === el.id ? "selected" : "" %>><%= el.name %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <%- include('../partials/_footer', { menu: "Edit User" }) %>
+</body>
+
+</html>

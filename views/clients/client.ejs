@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <section> <br>
+        <a href="/clients/add"><button>Add Client</button></a>
+    </section>
+
+    <h1>Client</h1>
+
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>City</th>
+            <th>Province</th>
+            <th>Zip Code</th>
+            <th>Action</th>
+        </tr>
+        <% clients.forEach((el, index) => { %>
+        <tr>
+            <td><%= ++index %></td>
+            <td><%= el.name %></td>
+            <td><%= el.image %></td>
+            <td><%= el.address %></td>
+            <td><%= el.district %></td>
+            <td><%= el.city %></td>
+            <td><%= el.province %></td>
+            <td><%= el.zipCode %></td>
+            <td>
+                <a href="/clients/edit/<%= el.id %>"><button>Edit</button></a>
+                <a href="/clients/delete/<%= el.id %>"><button>Delete</button></a>
+            </td>
+            <% }) %>
+    </table>
+
+    <%- include('../partials/_footer', { menu: "Client" }) %>
+</body>
+
+</html>

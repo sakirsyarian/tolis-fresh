@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <section> <br>
+        <a href="/users/add"><button>Add User</button></a>
+    </section>
+
+    <h1>User</h1>
+
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>No</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        <% users.forEach((el, index) => { %>
+        <tr>
+            <td><%= ++index %></td>
+            <td><%= el.username %></td>
+            <td><%= el.email %></td>
+            <td><%= el.Role.name %></td>
+            <td>
+                <a href="/users/edit/<%= el.id %>"><button>Edit</button></a>
+                <a href="/users/delete/<%= el.id %>"><button>Delete</button></a>
+            </td>
+            <% }) %>
+    </table>
+
+    <%- include('../partials/_footer', { menu: "User" }) %>
+</body>
+
+</html>

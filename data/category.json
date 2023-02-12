@@ -1,22 +1,22 @@
 [
     {
         "name": "Gula",
-        "image": null
+        "image": "gula.png"
     },
     {
         "name": "Tepung",
-        "image": null
+        "image": "tepung.png"
     },
     {
         "name": "Susu",
-        "image": null
+        "image": "susu.png"
     },
     {
         "name": "Daging",
-        "image": null
+        "image": "daging.png"
     },
     {
         "name": "Buah",
-        "image": null
+        "image": "buah.png"
     }
 ]

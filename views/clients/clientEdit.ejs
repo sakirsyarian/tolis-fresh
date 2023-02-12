@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Client</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <h1>Edit Client</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/clients/edit/<%= clientOne.id %>" method="POST">
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" name="name" value="<%= clientOne.name %>"></td>
+            </tr>
+            <tr>
+                <td><label>Image</label></td>
+                <td><input type="text" name="image" value="<%= clientOne.image %>"></td>
+            </tr>
+            <tr>
+                <td><label>Address</label></td>
+                <td><input type="text" name="address" value="<%= clientOne.address %>"></td>
+            </tr>
+            <tr>
+                <td><label>District</label></td>
+                <td><input type="text" name="district" value="<%= clientOne.district %>"></td>
+            </tr>
+            <tr>
+                <td><label>City</label></td>
+                <td><input type="text" name="city" value="<%= clientOne.city %>"></td>
+            </tr>
+            <tr>
+                <td><label>Province</label></td>
+                <td><input type="text" name="province" value="<%= clientOne.province %>"></td>
+            </tr>
+            <tr>
+                <td><label>Zip Code</label></td>
+                <td><input type="number" name="zipCode" value="<%= clientOne.zipCode %>"></td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <%- include('../partials/_footer', { menu: "Edit Client" }) %>
+</body>
+
+</html>

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Category</title>
+    <title>Add Role</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <%- include('partials/_navbar') %>
+    <%- include('../partials/_navbar') %>
 
-    <h1>Add Category</h1>
+    <h1>Add Role</h1>
 
     <% if (error) { %>
     <section>
@@ -20,22 +20,18 @@
     </section>
     <% } %>
 
-    <form action="/categories/add" method="POST">
+    <form action="/roles/add" method="POST">
         <table>
             <tr>
                 <td><label>Name</label></td>
                 <td><input type="text" name="name"></td>
-            </tr>
-            <tr>
-                <td><label>Image</label></td>
-                <td><input type="text" name="image"></td>
             </tr>
         </table> <br>
 
         <button type="submit">Submit</button>
     </form>
 
-    <%- include('partials/_footer', { menu: "Add Category" }) %>
+    <%- include('../partials/_footer', { menu: "Add Role" }) %>
 </body>
 
 </html>

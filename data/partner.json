@@ -1,22 +1,22 @@
 [
     {
         "name": "Garuda",
-        "image": null
+        "image": "garuda.png"
     },
     {
         "name": "Roma",
-        "image": null
+        "image": "roma.png"
     },
     {
         "name": "Diamond",
-        "image": null
+        "image": "diamond.png"
     },
     {
         "name": "Sosro",
-        "image": null
+        "image": "sosro.png"
     },
     {
         "name": "Indofood",
-        "image": null
+        "image": "indofood.png"
     }
 ]

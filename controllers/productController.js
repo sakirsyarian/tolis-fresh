@@ -7,14 +7,14 @@ class ProductController {
 
         Category.findAll()
             .then(categories => {
-                res.render('category', { categories })
+                res.render('categories/category', { categories })
             })
             .catch(err => res.send(err))
     }
 
     static categoryAdd(req, res) {
         const { error } = req.query
-        res.render('categoryAdd', { error })
+        res.render('categories/categoryAdd', { error })
     }
 
     static categoryCreate(req, res) {
@@ -31,7 +31,7 @@ class ProductController {
 
         Category.findByPk(id)
             .then(category => {
-                res.render('categoryEdit', { category, error })
+                res.render('categories/categoryEdit', { category, error })
             })
             .catch(err => res.send(err))
     }
@@ -56,7 +56,7 @@ class ProductController {
     static productFindAll(req, res) {
         Product.findAll({ include: [Category, Partner] })
             .then(products => {
-                res.render('product', { products })
+                res.render('products/product', { products })
             })
             .catch(err => res.send(err))
     }
@@ -71,7 +71,7 @@ class ProductController {
                 return Partner.findAll()
             })
             .then(partners => {
-                res.render('productAdd', { dataCategories, partners, error })
+                res.render('products/productAdd', { dataCategories, partners, error })
             })
             .catch(err => res.send(err))
     }
@@ -99,7 +99,7 @@ class ProductController {
                 return Partner.findAll()
             })
             .then(partners => {
-                res.render('productEdit', { error, ...data, partners })
+                res.render('products/productEdit', { error, ...data, partners })
             })
             .catch(err => res.send(err))
     }

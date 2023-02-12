@@ -1,7 +1,7 @@
 [
     {
         "name": "Tremayne",
-        "image": null,
+        "image": "tremayne.png",
         "address": "436 Mcbride Junction",
         "district": "Ramsey",
         "city": "Pensacola",
@@ -10,7 +10,7 @@
     },
     {
         "name": "Gustave",
-        "image": null,
+        "image": "gustave.png",
         "address": "609 Dorton Crossing",
         "district": "Pleasure",
         "city": "Fort Lauderdale",
@@ -19,7 +19,7 @@
     },
     {
         "name": "Kahaleel",
-        "image": null,
+        "image": "kahaleel.png",
         "address": "22064 Shelley Road",
         "district": "Eliot",
         "city": "Melbourne",
@@ -28,7 +28,7 @@
     },
     {
         "name": "Walton",
-        "image": null,
+        "image": "Walton.png",
         "address": "0035 Straubel Hill",
         "district": "Red Cloud",
         "city": "Tampa",
@@ -37,7 +37,7 @@
     },
     {
         "name": "Edward",
-        "image": null,
+        "image": "edward.PNG",
         "address": "5 Daystar Hill",
         "district": "Vermont",
         "city": "Miami",

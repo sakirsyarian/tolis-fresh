@@ -34,5 +34,11 @@ module.exports = (sequelize, DataTypes) => {
     user.password = hash
   })
 
+  User.beforeUpdate((user, options) => {
+    const salt = bycrypt.genSaltSync(10)
+    const hash = bycrypt.hashSync(user.password, salt)
+    user.password = hash
+  })
+
   return User;
 };

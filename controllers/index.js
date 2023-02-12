@@ -1,7 +1,7 @@
 'use strict'
 
 const bycrypt = require('bcryptjs')
-const { User } = require('../models')
+const { User, Role } = require('../models')
 
 class Controller {
     static home(req, res) {

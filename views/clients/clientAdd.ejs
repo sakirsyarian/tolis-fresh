@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Client</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <h1>Add Client</h1>
+
+    <% if (error) { %>
+    <section>
+        <p class="error"><%= error %></p>
+    </section>
+    <% } %>
+
+    <form action="/clients/add" method="POST">
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td><label>Image</label></td>
+                <td><input type="text" name="image"></td>
+            </tr>
+            <tr>
+                <td><label>Address</label></td>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td><label>District</label></td>
+                <td><input type="text" name="district"></td>
+            </tr>
+            <tr>
+                <td><label>City</label></td>
+                <td><input type="text" name="city"></td>
+            </tr>
+            <tr>
+                <td><label>Province</label></td>
+                <td><input type="text" name="province"></td>
+            </tr>
+            <tr>
+                <td><label>Zip Code</label></td>
+                <td><input type="number" name="zipCode"></td>
+            </tr>
+        </table> <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <%- include('../partials/_footer', { menu: "Add Client" }) %>
+</body>
+
+</html>
