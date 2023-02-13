@@ -3,15 +3,17 @@
 const express = require('express')
 const router = express.Router()
 
+const multerConfig = require('../middlewares/multerConfig')
+
 const ProductController = require('../controllers/productController')
 
 router.get('/categories', ProductController.categoryFindAll)
 
 router.get('/categories/add', ProductController.categoryAdd)
-router.post('/categories/add', ProductController.categoryCreate)
+router.post('/categories/add', multerConfig.single('image'), ProductController.categoryCreate)
 
 router.get('/categories/edit/:id', ProductController.categoryEdit)
-router.post('/categories/edit/:id', ProductController.categoryUpdate)
+router.post('/categories/edit/:id', multerConfig.single('image'), ProductController.categoryUpdate)
 
 router.get('/categories/delete/:id', ProductController.categoryDestroy)
 

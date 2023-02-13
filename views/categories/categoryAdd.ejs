@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Category</title>
-    <link rel="stylesheet" href="/style.css">
+    <%- include('../partials/_style') %>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     </section>
     <% } %>
 
-    <form action="/categories/add" method="POST">
+    <form action="/categories/add" method="POST" enctype="multipart/form-data">
         <table>
             <tr>
                 <td><label>Name</label></td>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td><label>Image</label></td>
-                <td><input type="text" name="image"></td>
+                <td><input type="file" name="image"></td>
             </tr>
         </table> <br>
 

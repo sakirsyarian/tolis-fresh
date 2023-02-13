@@ -7,27 +7,20 @@ const Controller = require('../controllers')
 const userRouter = require('./userRoute')
 const productRouter = require('./productRoute')
 const clientRouter = require('./clientRoute')
-const isLoginForHome = require('../middlewares/isLoginForHome')
 
-router.get('/', isLoginForHome, Controller.home)
+const saveSession = require('../middlewares/saveSession')
+const isLogin = require('../middlewares/isLogin')
 
-router.get('/register', isLoginForHome, Controller.register)
-router.post('/register', isLoginForHome, Controller.registerCreate)
+router.get('/', saveSession, Controller.home)
 
-router.get('/login', isLoginForHome, Controller.login)
-router.post('/login', isLoginForHome, Controller.loginCreate)
+router.get('/register', saveSession, Controller.register)
+router.post('/register', saveSession, Controller.registerCreate)
+
+router.get('/login', saveSession, Controller.login)
+router.post('/login', saveSession, Controller.loginCreate)
 
 // isLogin middleware
-router.use((req, res, next) => {
-    if (req.session.userId) {
-        res.locals.userId = req.session.userId
-        res.locals.roleId = req.session.roleId
-        res.locals.username = req.session.username
-        return next()
-    }
-
-    return res.redirect('/login?error=You must login first')
-})
+router.use(isLogin)
 
 router.get('/dashboard', Controller.dashboard)
 

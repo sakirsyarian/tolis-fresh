@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/style.css">
+    <%- include('partials/_style') %>
 </head>
 
 <body>
@@ -22,6 +22,10 @@
         <tr>
             <td>Username</td>
             <td>: <%= user.username %></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>: <%= user.email %></td>
         </tr>
         <tr>
             <td>First Name</td>

@@ -10,7 +10,6 @@ class UserController {
             include: UserDetail
         })
             .then(user => {
-                // res.send(user)
                 res.render('profile', { user })
             })
             .catch(err => res.send(err))
@@ -24,7 +23,6 @@ class UserController {
             include: UserDetail
         })
             .then(user => {
-                // res.send(user)
                 res.render('profileEdit', { id, error, user })
             })
             .catch(err => res.send(err))
@@ -32,21 +30,31 @@ class UserController {
 
     static userDetailUpdate(req, res) {
         const { id } = req.params
-        const { firstName, lastName, phoneNumber, dateOfBirth, address } = req.body
+        const { firstName, lastName, phoneNumber, dateOfBirth, address, username, email } = req.body
 
-        UserDetail.findByPk(id)
+        UserDetail.findByPk(id, {
+            include: User
+        })
             .then((userDetail) => {
+                // jika userDetail ada, maka update
                 if (userDetail) {
-                    return UserDetail.update({ firstName, lastName, phoneNumber, dateOfBirth, address }, {
-                        where: {
-                            id
-                        }
-                    })
+                    UserDetail.update(
+                        { firstName, lastName, phoneNumber, dateOfBirth, address },
+                        { where: { id } }
+                    )
+
+                    return User.update(
+                        { username, email },
+                        { where: { id } }
+                    )
                 }
 
+                // jika userDetail tidak ada, maka create
                 return UserDetail.create({ firstName, lastName, phoneNumber, dateOfBirth, address, UserId: id })
             })
-            .then(_ => res.redirect(`/user-details/${id}`))
+            .then(_ => {
+                res.redirect(`/user-details/${id}`)
+            })
             .catch(err => res.send(err))
     }
 

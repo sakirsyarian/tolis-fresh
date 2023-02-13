@@ -18,10 +18,13 @@ class ProductController {
     }
 
     static categoryCreate(req, res) {
-        const { name, image } = req.body
+        const { name } = req.body
+        const { filename } = req.file
 
-        Category.create({ name, image })
-            .then(_ => res.redirect('/categories'))
+        Category.create({ name, image: filename })
+            .then(_ => {
+                res.redirect('/categories')
+            })
             .catch(err => res.send(err))
     }
 
@@ -38,10 +41,19 @@ class ProductController {
 
     static categoryUpdate(req, res) {
         const { id } = req.params
-        const { name, image } = req.body
+        const { name } = req.body
+        let filename
 
-        Category.update({ name, image }, { where: { id } })
-            .then(_ => res.redirect('/categories'))
+        Category.findByPk(id)
+            .then(category => {
+                filename = category.image
+                if (req.file) filename = req.file.filename
+
+                return Category.update({ name, image: filename }, { where: { id } })
+            })
+            .then(_ => {
+                res.redirect('/categories')
+            })
             .catch(err => res.send(err))
     }
 
