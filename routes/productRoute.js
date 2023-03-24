@@ -20,10 +20,10 @@ router.get('/categories/delete/:id', ProductController.categoryDestroy)
 router.get('/products', ProductController.productFindAll)
 
 router.get('/products/add', ProductController.productAdd)
-router.post('/products/add', ProductController.productCreate)
+router.post('/products/add', multerConfig.single('image'), ProductController.productCreate)
 
 router.get('/products/edit/:id', ProductController.productEdit)
-router.post('/products/edit/:id', ProductController.productUpdate)
+router.post('/products/edit/:id', multerConfig.single('image'), ProductController.productUpdate)
 
 router.get('/products/delete/:id', ProductController.productDestroy)
 
