@@ -1,6 +1,7 @@
 'use strict'
 
 const bycrypt = require('bcryptjs')
+const chalk = require('chalk')
 const { User, Role } = require('../models')
 
 class Controller {
@@ -20,10 +21,13 @@ class Controller {
         const { username, email, password } = req.body
 
         User.create({ username, email, password })
-            .then(() => {
-                res.redirect('/login')
-            })
+            .then(() => res.redirect('/login'))
             .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/register?error=${message}`)
+                }
+
                 res.send(err)
             })
     }
@@ -38,19 +42,20 @@ class Controller {
 
         User.findOne({ where: { username } })
             .then(user => {
+                if (!user) return res.redirect('/login?error=Invalid username/password')
+
                 const isValidPassword = bycrypt.compareSync(password, user.password)
+                if (!isValidPassword) return res.redirect('/login?error=Invalid username/password')
 
-                if (user && isValidPassword) {
-                    req.session.userId = user.id
-                    req.session.roleId = user.RoleId
-                    req.session.username = user.username
+                req.session.userId = user.id
+                req.session.roleId = user.RoleId
+                req.session.username = user.username
 
-                    return res.redirect('/dashboard')
-                }
-
-                res.send('Invalid username/password')
+                return res.redirect('/dashboard')
             })
-            .catch(err => res.send(err))
+            .catch(err => {
+                res.send(err)
+            })
     }
 
     static dashboard(req, res) {
