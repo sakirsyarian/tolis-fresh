@@ -25,11 +25,20 @@ class ProductController {
 
     static categoryCreate(req, res) {
         const { name } = req.body
-        const filename = req.file.filename
+        let filename
+
+        if (req.file) filename = req.file.filename
 
         Category.create({ name, image: filename })
             .then(_ => res.redirect('/categories'))
-            .catch(err => res.send(err))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/categories/add?error=${message}`)
+                }
+
+                res.send(err)
+            })
     }
 
     static categoryEdit(req, res) {
@@ -79,7 +88,14 @@ class ProductController {
             .then(_ => {
                 res.redirect('/categories')
             })
-            .catch(err => res.send(err))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/categories/edit/${id}?error=${message}`)
+                }
+
+                res.send(err)
+            })
     }
 
     static categoryDestroy(req, res) {
@@ -141,11 +157,20 @@ class ProductController {
 
     static productCreate(req, res) {
         const { name, price, stock, expired, description, CategoryId, PartnerId } = req.body
-        const { filename } = req.file
+        let filename
+
+        if (req.file) filename = req.file.filename
 
         Product.create({ name, price, stock, expired, image: filename, description, CategoryId, PartnerId })
             .then(_ => res.redirect('/products'))
-            .catch(err => res.send(err))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/products/add?error=${message}`)
+                }
+
+                res.send(err)
+            })
     }
 
     static productEdit(req, res) {
@@ -202,7 +227,14 @@ class ProductController {
                 return Product.update({ name, price, stock, expired, image: filename, description, CategoryId, PartnerId }, { where: { id } })
             })
             .then(_ => res.redirect('/products'))
-            .catch(err => res.send(err))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/products/edit/${id}?error=${message}`)
+                }
+
+                res.send(err)
+            })
     }
 
     static productDestroy(req, res) {

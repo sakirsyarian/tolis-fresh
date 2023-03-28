@@ -28,14 +28,86 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   Product.init({
-    name: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER,
-    expired: DataTypes.DATE,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Name can't be null"
+        },
+        notEmpty: {
+          msg: "Name can't be empty"
+        },
+      }
+    },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Price can't be null"
+        },
+        notEmpty: {
+          msg: "Price can't be empty"
+        },
+        min: {
+          args: 1,
+          msg: "Price must be greater than one"
+        }
+      }
+    },
+    stock: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Stock can't be null"
+        },
+        notEmpty: {
+          msg: "Stock can't be empty"
+        },
+        min: {
+          args: 1,
+          msg: "Stock must be greater than one"
+        }
+      }
+    },
+    expired: {
+      type: DataTypes.DATE,
+      validate: {
+        dateValidation(value) {
+          if (new Date(value) < new Date()) {
+            throw new Error("Date must be greater than now");
+          }
+        }
+      }
+    },
     image: DataTypes.STRING,
     description: DataTypes.TEXT,
-    CategoryId: DataTypes.INTEGER,
-    PartnerId: DataTypes.INTEGER
+    CategoryId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Category can't be null"
+        },
+        notEmpty: {
+          msg: "Category can't be empty"
+        },
+      }
+    },
+    PartnerId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Partner can't be null"
+        },
+        notEmpty: {
+          msg: "Partner can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'Product',
