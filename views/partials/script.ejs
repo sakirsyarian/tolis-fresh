@@ -1,14 +1,14 @@
 <script>
-    var hostUrl = "assets/";
+    var hostUrl = "/assets/";
 </script>
 
 <!--begin::Global Javascript Bundle(used by all pages)-->
-<script src="assets/plugins/global/plugins.bundle.js"></script>
-<script src="assets/js/scripts.bundle.js"></script>
+<script src="/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 
 <!--begin::Vendors Javascript(used by this page)-->
-<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -20,15 +20,67 @@
 <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 
 <!--begin::Custom Javascript(used by this page)-->
-<script src="assets/js/widgets.bundle.js"></script>
-<script src="assets/js/custom/widgets.js"></script>
-<script src="assets/js/custom/apps/chat/chat.js"></script>
-<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="assets/js/custom/utilities/modals/new-target.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="/assets/js/widgets.bundle.js"></script>
+<script src="/assets/js/custom/widgets.js"></script>
+<script src="/assets/js/custom/apps/chat/chat.js"></script>
+<script src="/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="/assets/js/custom/utilities/modals/new-target.js"></script>
+<script src="/assets/js/custom/utilities/modals/users-search.js"></script>
 <!--end::Custom Javascript-->
+
+<!--begin::DataTables-->
+<script>
+    $("#kt_datatable_dom_positioning").DataTable({
+        "language": {
+            "lengthMenu": "Show _MENU_",
+        },
+        responsive: true,
+        "dom": "<'row'" +
+            "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+            ">" +
+
+            "<'table-responsive'tr>" +
+
+            "<'row'" +
+            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+            ">"
+    });
+</script>
+<!--end::Datatables-->
+
+<!--begin::Sweet Alert-->
+<script>
+    const button = document.querySelectorAll('.kt_docs_sweetalert_html');
+
+    button.forEach(items => {
+        items.addEventListener('click', e => {
+            e.preventDefault();
+
+            Swal.fire({
+                    html: `Are you sure you want to delete?`,
+                    icon: "error",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonText: 'No',
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: 'btn btn-danger'
+                    }
+                })
+                .then(result => {
+                    if (result.isConfirmed) {
+                        window.location = `/${e.target.classList[2]}/delete/${e.target.id}`
+                    }
+                })
+        });
+    })
+</script>
+<!--end::Sweet Alert-->

@@ -22,7 +22,7 @@
 
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="<?= $environment ?>/admin" class="d-lg-none">
+            <a href="/dashboard" class="d-lg-none">
                 <img alt="Logo" src="../images/favicon.ico" class="h-35px" />
             </a>
         </div>
@@ -42,7 +42,7 @@
 
                         <!--begin:Menu link-->
                         <span class="menu-link">
-                            <span class="menu-title">Dashboards</span>
+                            <span class="menu-title"><%= menu %></span>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                         <!--end:Menu link-->
@@ -177,7 +177,7 @@
 
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <img src="assets/media/avatars/300-1.jpg" alt="user" />
+                        <img src="/assets/media/avatars/300-1.jpg" alt="user" />
                     </div>
                     <!--end::Menu wrapper-->
 
@@ -190,16 +190,15 @@
 
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
+                                    <img alt="Logo" src="/assets/media/avatars/300-1.jpg" />
                                 </div>
                                 <!--end::Avatar-->
 
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">Max Smith
-                                        <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+                                    <div class="fw-bold d-flex align-items-center fs-5">
+                                        <%= locals.username ? locals.username : "No Name" %>
                                     </div>
-                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
                                 </div>
                                 <!--end::Username-->
 
@@ -213,7 +212,7 @@
 
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="#" class="menu-link px-5">My Profile</a>
+                            <a href="/user-details/<%= userId %>" class="menu-link px-5">My Profile</a>
                         </div>
                         <!--end::Menu item-->
 
@@ -229,7 +228,7 @@
 
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="#" class="menu-link px-5">Sign Out</a>
+                            <a href="/logout" class="menu-link px-5">Sign Out</a>
                         </div>
                         <!--end::Menu item-->
 

@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Name can't be null"
+          msg: "Product can't be null"
         },
         notEmpty: {
-          msg: "Name can't be empty"
+          msg: "Product can't be empty"
         },
       }
     },
@@ -74,7 +74,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     expired: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
+        notNull: {
+          msg: "Date expired can't be null"
+        },
+        notEmpty: {
+          msg: "Date expired can't be empty"
+        },
         dateValidation(value) {
           if (new Date(value) < new Date()) {
             throw new Error("Date must be greater than now");

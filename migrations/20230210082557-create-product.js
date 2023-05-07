@@ -22,7 +22,8 @@ module.exports = {
                 allowNull: false,
             },
             expired: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                allowNull: false,
             },
             image: {
                 type: Sequelize.STRING

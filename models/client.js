@@ -14,13 +14,79 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Client.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Client can't be null"
+        },
+        notEmpty: {
+          msg: "Client can't be empty"
+        },
+      }
+    },
     image: DataTypes.STRING,
-    address: DataTypes.STRING,
-    district: DataTypes.STRING,
-    city: DataTypes.STRING,
-    province: DataTypes.STRING,
-    zipCode: DataTypes.INTEGER
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Address can't be null"
+        },
+        notEmpty: {
+          msg: "Address can't be empty"
+        },
+      }
+    },
+    district: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "District can't be null"
+        },
+        notEmpty: {
+          msg: "District can't be empty"
+        },
+      }
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "City can't be null"
+        },
+        notEmpty: {
+          msg: "City can't be empty"
+        },
+      }
+    },
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Client can't be null"
+        },
+        notEmpty: {
+          msg: "Client can't be empty"
+        },
+      }
+    },
+    zipCode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Zip Code can't be null"
+        },
+        notEmpty: {
+          msg: "Zip Code can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'Client',
