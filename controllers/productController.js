@@ -270,6 +270,129 @@ class ProductController {
             })
             .catch(err => res.send(err))
     }
+
+    static partnerFindAll(req, res) {
+
+        Partner.findAll()
+            .then(partners => {
+                res.render('partners/partner', { partners })
+            })
+            .catch(err => res.send(err))
+    }
+
+    static partnerAdd(req, res) {
+        const { error } = req.query
+        res.render('partners/partnerAdd', { error })
+    }
+
+    static partnerCreate(req, res) {
+        const { name } = req.body
+        let filename
+
+        if (req.file) filename = req.file.filename
+
+        Partner.create({ name, image: filename })
+            .then(_ => res.redirect('/partners'))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/partners/add?error=${message}`)
+                }
+
+                res.send(err)
+            })
+    }
+
+    static partnerEdit(req, res) {
+        const { id } = req.params
+        const { error } = req.query
+
+        Partner.findByPk(id)
+            .then(partner => {
+                res.render('partners/partnerEdit', { partner, error })
+            })
+            .catch(err => res.send(err))
+    }
+
+    static partnerUpdate(req, res) {
+        const { id } = req.params
+        const { name } = req.body
+        let filename
+
+        Partner.findByPk(id)
+            .then(partner => {
+                filename = partner.image
+                if (req.file) filename = req.file.filename
+
+                fs.access(`./${baseUrl}${partner.image}`, fs.constants.F_OK, (err) => {
+                    if (err) {
+                        console.log(chalk.red('file does not exist - error'));
+                        return;
+                    }
+
+                    const checkAvailability = path.extname(`./${baseUrl}${partner.image}`)
+                    if (!checkAvailability) {
+                        console.log(chalk.red('file does not exist - check available'));
+                        return
+                    }
+
+                    console.log(chalk.green(`There is a ${partner.image} file`));
+                    if (partner.image !== filename) {
+                        fs.unlink(`${baseUrl}${partner.image}`, function (err) {
+                            if (err) throw err;
+                            console.log(chalk.red(`File ${partner.image} has been deleted!`));
+                        });
+                    }
+                });
+
+                return Partner.update({ name, image: filename }, { where: { id } })
+            })
+            .then(_ => {
+                res.redirect('/partners')
+            })
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/partners/edit/${id}?error=${message}`)
+                }
+
+                res.send(err)
+            })
+    }
+
+    static partnerDestroy(req, res) {
+        const { id } = req.params
+        let dataPartner
+
+        Partner.findByPk(id)
+            .then(partner => {
+                dataPartner = partner
+                return Partner.destroy({ where: { id } })
+            })
+            .then(_ => {
+                fs.access(`./${baseUrl}${dataPartner.image}`, fs.constants.F_OK, (err) => {
+                    if (err) {
+                        console.log(chalk.red('file does not exist - error'));
+                        return;
+                    }
+
+                    const checkAvailability = path.extname(`./${baseUrl}${dataPartner.image}`)
+                    if (!checkAvailability) {
+                        console.log(chalk.red('file does not exist - check available'));
+                        return
+                    }
+
+                    console.log(chalk.green(`There is a ${dataPartner.image} file`));
+                    fs.unlink(`${baseUrl}${dataPartner.image}`, function (err) {
+                        if (err) throw err;
+                        console.log(chalk.red(`File ${dataPartner.image} has been deleted!`));
+                    });
+                });
+
+                res.redirect('/partners')
+            })
+            .catch(err => res.send(err))
+    }
 }
 
 module.exports = ProductController

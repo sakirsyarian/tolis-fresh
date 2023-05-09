@@ -1,6 +1,12 @@
 'use strict'
 
+const fs = require('fs')
+const chalk = require('chalk')
+const path = require('path')
+
 const { UserDetail, User, Role } = require('../models')
+
+const baseUrl = 'public/uploads/'
 
 class UserController {
     static userDetailFindAll(req, res) {
@@ -31,15 +37,40 @@ class UserController {
     static userDetailUpdate(req, res) {
         const { id } = req.params
         const { firstName, lastName, phoneNumber, dateOfBirth, address, username, email } = req.body
+        let filename
 
         UserDetail.findByPk(id, {
             include: User
         })
             .then((userDetail) => {
+                filename = userDetail.image
+                if (req.file) filename = req.file.filename
+
+                fs.access(`./${baseUrl}${userDetail.image}`, fs.constants.F_OK, (err) => {
+                    if (err) {
+                        console.log(chalk.red('file does not exist - error'));
+                        return;
+                    }
+
+                    const checkAvailability = path.extname(`./${baseUrl}${userDetail.image}`)
+                    if (!checkAvailability) {
+                        console.log(chalk.red('file does not exist - check available'));
+                        return
+                    }
+
+                    console.log(chalk.green(`There is a ${userDetail.image} file`));
+                    if (userDetail.image !== filename) {
+                        fs.unlink(`${baseUrl}${userDetail.image}`, function (err) {
+                            if (err) throw err;
+                            console.log(chalk.red(`File ${userDetail.image} has been deleted!`));
+                        });
+                    }
+                });
+
                 // jika userDetail ada, maka update
                 if (userDetail) {
                     UserDetail.update(
-                        { firstName, lastName, phoneNumber, dateOfBirth, address },
+                        { firstName, lastName, phoneNumber, image: filename, dateOfBirth, address },
                         { where: { id } }
                     )
 
@@ -50,12 +81,19 @@ class UserController {
                 }
 
                 // jika userDetail tidak ada, maka create
-                return UserDetail.create({ firstName, lastName, phoneNumber, dateOfBirth, address, UserId: id })
+                return UserDetail.create({ firstName, lastName, phoneNumber, image: filename, dateOfBirth, address, UserId: id })
             })
             .then(_ => {
                 res.redirect(`/user-details/${id}`)
             })
-            .catch(err => res.send(err))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/categories/edit/${id}?error=${message}`)
+                }
+
+                res.send(err)
+            })
     }
 
     static roleFindAll(req, res) {

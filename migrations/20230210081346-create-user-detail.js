@@ -20,6 +20,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.STRING,
+        defaultValue: "default.png",
+      },
       dateOfBirth: {
         type: Sequelize.DATE
       },

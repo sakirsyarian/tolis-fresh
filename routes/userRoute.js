@@ -3,8 +3,9 @@
 const express = require('express')
 const router = express.Router()
 
-const UserController = require('../controllers/userController')
+const multerConfig = require('../middlewares/multerConfig')
 
+const UserController = require('../controllers/userController')
 
 router.get('/roles', UserController.roleFindAll)
 
@@ -29,6 +30,6 @@ router.get('/users/delete/:id', UserController.userDestroy)
 router.get('/user-details/:id', UserController.userDetailFindAll)
 
 router.get('/user-details/edit/:id', UserController.userDetailEdit)
-router.post('/user-details/edit/:id', UserController.userDetailUpdate)
+router.post('/user-details/edit/:id', multerConfig.single('image'), UserController.userDetailUpdate)
 
 module.exports = router

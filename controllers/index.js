@@ -2,7 +2,7 @@
 
 const bycrypt = require('bcryptjs')
 const chalk = require('chalk')
-const { User, Role } = require('../models')
+const { User, UserDetail, Product, Category, Partner, Client } = require('../models')
 
 class Controller {
     static home(req, res) {
@@ -40,7 +40,7 @@ class Controller {
     static loginCreate(req, res) {
         const { username, password } = req.body
 
-        User.findOne({ where: { username } })
+        User.findOne({ include: UserDetail, where: { username } })
             .then(user => {
                 if (!user) return res.redirect('/login?error=Invalid username/password')
 
@@ -50,6 +50,7 @@ class Controller {
                 req.session.userId = user.id
                 req.session.roleId = user.RoleId
                 req.session.username = user.username
+                req.session.image = user.UserDetail.image
 
                 return res.redirect('/dashboard')
             })
@@ -59,8 +60,25 @@ class Controller {
     }
 
     static dashboard(req, res) {
-        const { username, userId } = req.session
-        res.render('dashboard', { username, userId })
+        let dataMenu = {}
+
+        Product.findAll()
+            .then(prodcts => {
+                dataMenu.products = prodcts
+                return Category.findAll()
+            })
+            .then(categories => {
+                dataMenu.categories = categories
+                return Partner.findAll()
+            })
+            .then(partners => {
+                dataMenu.partners = partners
+                return Client.findAll()
+            })
+            .then(clients => {
+                res.render('dashboard', { ...dataMenu, clients })
+            })
+            .catch(err => res.send(err))
     }
 
     static logout(req, res) {

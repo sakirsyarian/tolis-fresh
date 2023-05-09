@@ -27,4 +27,14 @@ router.post('/products/edit/:id', multerConfig.single('image'), ProductControlle
 
 router.get('/products/delete/:id', ProductController.productDestroy)
 
+router.get('/partners', ProductController.partnerFindAll)
+
+router.get('/partners/add', ProductController.partnerAdd)
+router.post('/partners/add', multerConfig.single('image'), ProductController.partnerCreate)
+
+router.get('/partners/edit/:id', ProductController.partnerEdit)
+router.post('/partners/edit/:id', multerConfig.single('image'), ProductController.partnerUpdate)
+
+router.get('/partners/delete/:id', ProductController.partnerDestroy)
+
 module.exports = router

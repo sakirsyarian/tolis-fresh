@@ -3,6 +3,7 @@ const isLogin = (req, res, next) => {
         res.locals.userId = req.session.userId
         res.locals.roleId = req.session.roleId
         res.locals.username = req.session.username
+        res.locals.image = req.session.image
 
         return next()
     }
