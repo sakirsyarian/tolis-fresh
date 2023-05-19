@@ -6,10 +6,39 @@ const { User, UserDetail, Product, Category, Partner, Client } = require('../mod
 
 class Controller {
     static home(req, res) {
+        let dataMenu = {}
+
         User.findAll()
             .then(users => {
-                res.render('home', { users })
+                dataMenu.users = users
+                return Product.findAll()
             })
+            .then(prodcts => {
+                dataMenu.products = prodcts
+                return Category.findAll({ limit: 4 })
+            })
+            .then(categories => {
+                dataMenu.categories = categories
+                return Partner.findAll({ limit: 12 })
+            })
+            .then(partners => {
+                dataMenu.partners = partners
+                return Client.findAll({ limit: 12 })
+            })
+            .then(clients => {
+                dataMenu.clients = clients
+                res.render('home', { ...dataMenu })
+            })
+            .catch(err => res.send(err))
+    }
+
+    static listProducts(req, res) {
+
+        Product.findAll()
+            .then(products => {
+                res.render('listProduct', { products })
+            })
+            .catch(err => res.send(err))
     }
 
     static register(req, res) {

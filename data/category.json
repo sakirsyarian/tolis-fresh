@@ -1,22 +1,18 @@
 [
     {
-        "name": "Gula",
-        "image": "gula.png"
-    },
-    {
-        "name": "Tepung",
-        "image": "tepung.png"
-    },
-    {
-        "name": "Susu",
-        "image": "susu.png"
-    },
-    {
-        "name": "Daging",
-        "image": "daging.png"
+        "name": "Ayam",
+        "image": "ayam-tolis.png"
     },
     {
         "name": "Buah",
-        "image": "buah.png"
+        "image": "buah-tolis.png"
+    },
+    {
+        "name": "Sembako",
+        "image": "sembako-tolis.png"
+    },
+    {
+        "name": "Sayur",
+        "image": "sayur-tolis.png"
     }
 ]

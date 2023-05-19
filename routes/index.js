@@ -12,6 +12,7 @@ const saveSession = require('../middlewares/saveSession')
 const isLogin = require('../middlewares/isLogin')
 
 router.get('/', saveSession, Controller.home)
+router.get('/list-products', saveSession, Controller.listProducts)
 
 router.get('/register', saveSession, Controller.register)
 router.post('/register', saveSession, Controller.registerCreate)
