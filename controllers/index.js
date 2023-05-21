@@ -2,10 +2,11 @@
 
 const bycrypt = require('bcryptjs')
 const chalk = require('chalk')
-const { User, UserDetail, Product, Category, Partner, Client } = require('../models')
+const { User, UserDetail, Product, Category, Partner, Client, Purchase } = require('../models')
 
 class Controller {
     static home(req, res) {
+        const { error, message } = req.query
         let dataMenu = {}
 
         User.findAll()
@@ -27,7 +28,7 @@ class Controller {
             })
             .then(clients => {
                 dataMenu.clients = clients
-                res.render('home', { ...dataMenu })
+                res.render('home', { ...dataMenu, error, message })
             })
             .catch(err => res.send(err))
     }
@@ -115,6 +116,55 @@ class Controller {
             if (err) return res.send(err)
             return res.redirect('/login')
         })
+    }
+
+    static purchaseFindAll(req, res) {
+        Purchase.findAll({ order: [['createdAt', 'DESC']] })
+            .then(purchases => {
+                res.render('purchase', { purchases })
+            })
+            .catch(err => res.send(err))
+    }
+
+    static purchaseCreate(req, res) {
+        const { name, message, email, phoneNumber, businessName, businessAddress } = req.body
+
+        Purchase.create({ name, message, email, phoneNumber, businessName, businessAddress })
+            .then(_ => res.redirect('/?message=Berhasil mengirim pesan'))
+            .catch(err => {
+                if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
+                    const message = err.errors.map(el => el.message)
+                    return res.redirect(`/?error=${message}`)
+                }
+
+                res.send(err)
+            })
+    }
+
+    static purchaseView(req, res) {
+        const { id } = req.params
+
+        Purchase.findByPk(id)
+            .then(purchase => {
+                res.render('purchaseView', { purchase })
+            })
+            .catch(err => res.send(err))
+    }
+
+    static purchaseRead(req, res) {
+        const { id } = req.params
+
+        Purchase.update({ status: "Read" }, { where: { id } })
+            .then(_ => res.redirect('/purchases'))
+            .catch(err => res.send(err))
+    }
+
+    static purchaseDestroy(req, res) {
+        const { id } = req.params
+
+        Purchase.destroy({ where: { id } })
+            .then(_ => res.redirect('/purchases'))
+            .catch(err => res.send(err))
     }
 }
 

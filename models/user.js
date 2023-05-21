@@ -58,7 +58,18 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     },
-    RoleId: DataTypes.INTEGER
+    RoleId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Role can't be null"
+        },
+        notEmpty: {
+          msg: "Role can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'User',

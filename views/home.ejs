@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/tolisfresh/favicon.ico" />
     <title>Tolis Fresh - Supplier Makanan HORECA</title>
+    <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <!--begin::WhatsApp-->
     <link rel="stylesheet" href="/plugin/whatsapp-chat-support.css">
     <!--end::WhatsApp-->
@@ -145,6 +146,58 @@
                     <!--begin::Heading-->
                     <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
 
+                        <!--begin::Error-->
+                        <% if (error) { %>
+                        <div class="alert alert-danger d-flex align-items-center p-5">
+
+                            <!--begin::Svg Icon | path: C:/wamp64/www/keenthemes/core/html/src/media/icons/duotune/abstract/abs012.svg-->
+                            <span class="svg-icon svg-icon-2 svg-icon-danger">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+                                    <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor" />
+                                    <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column">
+                                <!--begin::Content-->
+                                <span class="ms-3"><%= error.split(",").join(", ") %></span>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+
+                        </div>
+                        <% } %>
+                        <!--end::Error-->
+
+                        <!--begin::Success-->
+                        <% if (message) { %>
+                        <div class="alert alert-success d-flex align-items-center p-5">
+
+                            <!--begin::Svg Icon | path: C:/wamp64/www/keenthemes/core/html/src/media/icons/duotune/arrows/arr016.svg-->
+                            <span class="svg-icon svg-icon-2 svg-icon-success"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.3" d="M10.3 14.3L11 13.6L7.70002 10.3C7.30002 9.9 6.7 9.9 6.3 10.3C5.9 10.7 5.9 11.3 6.3 11.7L10.3 15.7C9.9 15.3 9.9 14.7 10.3 14.3Z" fill="currentColor" />
+                                    <path d="M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM11.7 15.7L17.7 9.70001C18.1 9.30001 18.1 8.69999 17.7 8.29999C17.3 7.89999 16.7 7.89999 16.3 8.29999L11 13.6L7.70001 10.3C7.30001 9.89999 6.69999 9.89999 6.29999 10.3C5.89999 10.7 5.89999 11.3 6.29999 11.7L10.3 15.7C10.5 15.9 10.8 16 11 16C11.2 16 11.5 15.9 11.7 15.7Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column">
+
+                                <!--begin::Content-->
+                                <span class="ms-3"><%= message %></span>
+                                <!--end::Content-->
+
+                            </div>
+                            <!--end::Wrapper-->
+
+                        </div>
+                        <% } %>
+                        <!--end::Success-->
+
                         <!--begin::Title-->
                         <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-15">Supplier Bahan Baku
                             <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
@@ -154,11 +207,102 @@
                         <!--end::Title-->
 
                         <!--begin::Action-->
-                        <a href="/" class="btn btn-success">Pesan</a>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+                            Pesan
+                        </button>
                         <!--end::Action-->
 
                     </div>
                     <!--end::Heading-->
+
+                    <!--begin::Modal-->
+                    <div class="modal fade" tabindex="-1" id="kt_modal_1">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Pemesanan</h3>
+
+                                    <!--begin::Close-->
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <!--begin::Svg Icon | path: C:/wamp64/www/keenthemes/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor" />
+                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor" />
+                                            </svg></span>
+                                        <!--end::Svg Icon-->
+                                    </div>
+                                    <!--end::Close-->
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <!--begin:Form-->
+                                    <form id="kt_modal_new_target_form" class="form" action="/purchases/add" method="POST">
+
+                                        <!--begin::Input group-->
+                                        <div class="row g-9 mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-md-6">
+                                                <label class="required fs-6 fw-semibold mb-2">Nama</label>
+                                                <input type="text" class="form-control form-control-solid" placeholder="Tuliskan nama" name="name" />
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-md-6 fv-row">
+                                                <label class="fs-6 fw-semibold mb-2">Brand</label>
+                                                <input type="text" class="form-control form-control-solid" placeholder="Tuliskan brand" name="businessName" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row g-9 mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-md-6">
+                                                <label class="fs-6 fw-semibold mb-2">Email</label>
+                                                <input type="text" class="form-control form-control-solid" placeholder="Tuliskan email" name="email" />
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-md-6 fv-row">
+                                                <label class="required fs-6 fw-semibold mb-2">WhatsApp</label>
+                                                <input type="text" class="form-control form-control-solid" placeholder="Tuliskan whatsapp" name="phoneNumber" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-8 fv-row">
+                                            <label class="fs-6 fw-semibold mb-2">Alamat</label>
+                                            <textarea class="form-control form-control-solid" rows="3" name="businessAddress" placeholder="Masukan alamat perusahaan"></textarea>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-8 fv-row">
+                                            <label class="fs-6 fw-semibold mb-2">Catatan</label>
+                                            <textarea class="form-control form-control-solid" rows="3" name="message" placeholder="Masukan barang yang ingin dibeli"></textarea>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Actions-->
+                                        <div class="text-center mt-16">
+                                            <button type="submit" name="submit" class="btn btn-primary">
+                                                Submit
+                                            </button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </form>
+                                    <!--end:Form-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Modal-->
 
                 </div>
                 <!--end::Landing hero-->
@@ -1001,9 +1145,11 @@
                         <!--end::Description-->
                     </div>
                     <!--end::Content-->
-                    <!--begin::Link-->
-                    <a href="https://1.envato.market/EA4JP" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2">Pesan</a>
-                    <!--end::Link-->
+                    <!--begin::Action-->
+                    <button type="button" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+                        Pesan
+                    </button>
+                    <!--end::Action-->
                 </div>
                 <!--end::Highlight-->
             </div>
@@ -1054,19 +1200,19 @@
                                     <h4 class="fw-bold text-gray-400 mb-6">Menu</h4>
                                     <!--end::Subtitle-->
                                     <!--begin::Link-->
-                                    <a href="#pesan" class="text-white opacity-50 text-hover-success fs-5 mb-6">Pemesanan</a>
+                                    <a data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" href="#pesan" class="text-white opacity-50 text-hover-success fs-5 mb-6">Pemesanan</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#tolisfresh" class="text-white opacity-50 text-hover-success fs-5 mb-6">Tolisfresh</a>
+                                    <a data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" href="#tolisfresh" class="text-white opacity-50 text-hover-success fs-5 mb-6">Tolisfresh</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#team" class="text-white opacity-50 text-hover-success fs-5 mb-6">Team</a>
+                                    <a data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" href="#team" class="text-white opacity-50 text-hover-success fs-5 mb-6">Team</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#portfolio" class="text-white opacity-50 text-hover-success fs-5 mb-6">Portfolio</a>
+                                    <a data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" href="#portfolio" class="text-white opacity-50 text-hover-success fs-5 mb-6">Portfolio</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#kategori" class="text-white opacity-50 text-hover-success fs-5">Kategori</a>
+                                    <a data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true" href="#kategori" class="text-white opacity-50 text-hover-success fs-5">Kategori</a>
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Links-->

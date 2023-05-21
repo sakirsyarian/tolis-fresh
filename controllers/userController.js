@@ -89,7 +89,7 @@ class UserController {
             .catch(err => {
                 if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
                     const message = err.errors.map(el => el.message)
-                    return res.redirect(`/categories/edit/${id}?error=${message}`)
+                    return res.redirect(`/user-details/edit/${id}?error=${message}`)
                 }
 
                 res.send(err)

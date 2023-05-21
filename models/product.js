@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     description: DataTypes.TEXT,
     CategoryId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -104,7 +104,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     PartnerId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
