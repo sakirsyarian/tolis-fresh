@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role</title>
+    <%- include('../partials/_style') %>
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+    <section> <br>
+        <a href="/roles/add"><button>Add Role</button></a>
+    </section>
+
+    <h1>Role</h1>
+
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <% roles.forEach((el, index) => { %>
+        <tr>
+            <td><%= ++index %></td>
+            <td><%= el.name %></td>
+            <td>
+                <a href="/roles/edit/<%= el.id %>"><button>Edit</button></a>
+                <a href="/roles/delete/<%= el.id %>"><button>Delete</button></a>
+            </td>
+            <% }) %>
+    </table>
+
+    <%- include('../partials/_footer', { menu: "Role" }) %>
+</body>
+
+</html>

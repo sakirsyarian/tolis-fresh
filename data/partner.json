@@ -1,22 +1,46 @@
 [
     {
-        "name": "Hotelku",
-        "image": null
+        "name": "ABC",
+        "image": "abc.png"
     },
     {
-        "name": "Roma",
-        "image": null
+        "name": "Ajinomoto",
+        "image": "ajinomoto.png"
+    },
+    {
+        "name": "Delmonte",
+        "image": "delmonte.png"
     },
     {
         "name": "Diamond",
-        "image": null
+        "image": "diamond.png"
     },
     {
-        "name": "Sosro",
-        "image": null
+        "name": "Fortune",
+        "image": "fortune.png"
     },
     {
-        "name": "Indofood",
-        "image": null
+        "name": "Gulaku",
+        "image": "gulaku.png"
+    },
+    {
+        "name": "Maestro",
+        "image": "maestro.png"
+    },
+    {
+        "name": "Rose",
+        "image": "rose.png"
+    },
+    {
+        "name": "Sania",
+        "image": "sania.png"
+    },
+    {
+        "name": "Sovia",
+        "image": "sovia.png"
+    },
+    {
+        "name": "Unilever",
+        "image": "unilever.png"
     }
 ]

@@ -1,4 +1,7 @@
 'use strict';
+
+const { formatedAge, formatedDate } = require('../helpers/formated')
+
 const {
   Model
 } = require('sequelize');
@@ -13,14 +16,36 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       UserDetail.belongsTo(models.User)
     }
+
+    get age() {
+      return formatedAge(this.dateOfBirth)
+    }
+
+    get date() {
+      return formatedDate(this.dateOfBirth)
+    }
+
   }
   UserDetail.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
+    jobTitle: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
+    image: DataTypes.STRING,
     dateOfBirth: DataTypes.DATE,
     address: DataTypes.TEXT,
-    UserId: DataTypes.INTEGER
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "User can't be null"
+        },
+        notEmpty: {
+          msg: "User can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'UserDetail',

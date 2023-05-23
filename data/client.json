@@ -1,47 +1,110 @@
 [
     {
-        "name": "Tremayne",
-        "image": null,
-        "address": "436 Mcbride Junction",
-        "district": "Ramsey",
-        "city": "Pensacola",
-        "province": "Florida",
-        "zipCode": "32595"
+        "name": "Ambhara",
+        "image": "ambhara.png",
+        "address": "Jl. Iskandarsyah Raya No. 1, RT.5/RW.2, Melawai",
+        "district": "Kebayoran Baru",
+        "city": "Jakarta Selatan",
+        "province": "DKI Jakarta",
+        "zipCode": "12160"
     },
     {
-        "name": "Gustave",
-        "image": null,
-        "address": "609 Dorton Crossing",
-        "district": "Pleasure",
-        "city": "Fort Lauderdale",
-        "province": "Florida",
-        "zipCode": "33336"
+        "name": "Annora Apartment",
+        "image": "annora.png",
+        "address": "Jl. Jend. Sudirman No. 13, RT. 6/ RW. 13",
+        "district": "Tangerang",
+        "city": "Tangerang",
+        "province": "Banten",
+        "zipCode": "15118"
     },
     {
-        "name": "Kahaleel",
-        "image": null,
-        "address": "22064 Shelley Road",
-        "district": "Eliot",
-        "city": "Melbourne",
-        "province": "Florida",
-        "zipCode": "32941"
+        "name": "Best Western",
+        "image": "western.png",
+        "address": "Jl. Benyamin Suaeb No. 5, RT. 13/ RW. 6",
+        "district": "Kemayoran",
+        "city": "Jakarta Pusat",
+        "province": "DKI Jakarta",
+        "zipCode": "10630"
     },
     {
-        "name": "Walton",
-        "image": null,
-        "address": "0035 Straubel Hill",
-        "district": "Red Cloud",
-        "city": "Tampa",
-        "province": "Florida",
-        "zipCode": "33633"
+        "name": "Episode",
+        "image": "episode.png",
+        "address": "Jl. Gading Serpong Boulevard Barat No. 6-7",
+        "district": "Serpong",
+        "city": "Kab. Tangerang",
+        "province": "Banten",
+        "zipCode": "15810"
     },
     {
-        "name": "Edward",
-        "image": null,
-        "address": "5 Daystar Hill",
-        "district": "Vermont",
-        "city": "Miami",
-        "province": "Florida",
-        "zipCode": "33180"
+        "name": "GP Mega Kuningan",
+        "image": "kuningan.png",
+        "address": "Jl. Mega Kuningan Timur I No. E12, RT. 5/ RW. 2, Kuningan",
+        "district": "Setiabudi",
+        "city": "Jakarta Selatan",
+        "province": "DKI Jakarta",
+        "zipCode": "12950"
+    },
+    {
+        "name": "Golden Tulip",
+        "image": "golden.png",
+        "address": "Jl. Jend. Sudirman Kav. 9, Cikokol RT. 6/ RW. 13",
+        "district": "Tangerang",
+        "city": "Tangerang",
+        "province": "Banten",
+        "zipCode": "15118"
+    },
+    {
+        "name": "Janji Jiwa",
+        "image": "jiwa.png",
+        "address": "Jl. Kedoya Raya No.2",
+        "district": "Kb. Jeruk",
+        "city": "Jakarta Barat",
+        "province": "DKI Jakarta",
+        "zipCode": "12160"
+    },
+    {
+        "name": "Grand Cempaka",
+        "image": "cempaka.png",
+        "address": "Jl. Letjend Suprapto, RT. 1/ RW. 3",
+        "district": "Cempaka Putih",
+        "city": "Jakarta Pusat",
+        "province": "DKI Jakarta",
+        "zipCode": "10510"
+    },
+    {
+        "name": "Halaman Baru",
+        "image": "halbar.png",
+        "address": "Jl. Bina Marga No. 8, RT. 6/ RW. 5",
+        "district": "Cipayung",
+        "city": "Jakarta Timur",
+        "province": "DKI Jakarta",
+        "zipCode": "13840"
+    },
+    {
+        "name": "Halaman Pertama",
+        "image": "halper.png",
+        "address": "Jl. Raya PKP No. 10, RT. 12",
+        "district": "Ciratas",
+        "city": "Jakarta Timur",
+        "province": "DKI Jakarta",
+        "zipCode": "13730"
+    },
+    {
+        "name": "Mamma Rosy",
+        "image": "rosy.png",
+        "address": "Jl. Kemang Raya No. 58, RT. 8/ RW. 2, Bangka",
+        "district": "Mampang Prapatan",
+        "city": "Jakarta Selatan",
+        "province": "DKI Jakarta",
+        "zipCode": "12730"
+    },
+    {
+        "name": "M Bloc Market",
+        "image": "bloc.PNG",
+        "address": "Jl. Panglima Polim No. 36B, RT. 1/ RW. 1, Melawai",
+        "district": "Kebayoran Baru",
+        "city": "Jakarta Selatan",
+        "province": "DKI Jakarta",
+        "zipCode": "12160"
     }
 ]

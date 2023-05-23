@@ -11,14 +11,19 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING
       },
+      jobTitle: {
+        type: Sequelize.STRING
+      },
       phoneNumber: {
         type: Sequelize.STRING,
-        allowNull: false,
+      },
+      image: {
+        type: Sequelize.STRING,
+        defaultValue: "default.png",
       },
       dateOfBirth: {
         type: Sequelize.DATE
@@ -32,7 +37,9 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,

@@ -1,4 +1,7 @@
 'use strict';
+
+const { formatedNumber, formatedDate } = require('../helpers/formated')
+
 const {
   Model
 } = require('sequelize');
@@ -14,16 +17,104 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.Category)
       Product.belongsTo(models.Partner)
     }
+
+    get currencyId() {
+      return formatedNumber(this.price)
+    }
+
+    get dateOfExpired() {
+      return formatedDate(this.expired)
+    }
+
   }
   Product.init({
-    name: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    stock: DataTypes.INTEGER,
-    expired: DataTypes.DATE,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Product can't be null"
+        },
+        notEmpty: {
+          msg: "Product can't be empty"
+        },
+      }
+    },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Price can't be null"
+        },
+        notEmpty: {
+          msg: "Price can't be empty"
+        },
+        min: {
+          args: 1,
+          msg: "Price must be greater than one"
+        }
+      }
+    },
+    stock: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Stock can't be null"
+        },
+        notEmpty: {
+          msg: "Stock can't be empty"
+        },
+        min: {
+          args: 1,
+          msg: "Stock must be greater than one"
+        }
+      }
+    },
+    expired: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Date expired can't be null"
+        },
+        notEmpty: {
+          msg: "Date expired can't be empty"
+        },
+        dateValidation(value) {
+          if (new Date(value) < new Date()) {
+            throw new Error("Date must be greater than now");
+          }
+        }
+      }
+    },
     image: DataTypes.STRING,
     description: DataTypes.TEXT,
-    CategoryId: DataTypes.INTEGER,
-    PartnerId: DataTypes.INTEGER
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Category can't be null"
+        },
+        notEmpty: {
+          msg: "Category can't be empty"
+        },
+      }
+    },
+    PartnerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Partner can't be null"
+        },
+        notEmpty: {
+          msg: "Partner can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'Product',

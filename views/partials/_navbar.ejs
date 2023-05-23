@@ -1,0 +1,25 @@
+<% if (!locals.userId) { %>
+<nav class="navbar">
+    <label><a href="/">TolisFresh</a></label>
+    <div class="auth">
+        <a href="/login"><button>Login</button></a>
+        <a href="/register"><button>Register</button></a>
+    </div>
+</nav>
+<% } %>
+
+<% if (locals.userId) { %>
+<nav class="navbar">
+    <label><a href="/">TolisFresh</a></label>
+    <div class="navigation">
+        <a href="/dashboard"><button>Dashboard</button></a>
+        <a href="/categories"><button>Categories</button></a>
+        <a href="/products"><button>Products</button></a>
+        <a href="/clients"><button>Clients</button></a>
+    </div>
+    <div class="auth">
+        <label><a href="/user-details/<%= locals.userId %>"><%= locals.username ? locals.username : ""  %></a> | </label>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+</nav>
+<% } %>

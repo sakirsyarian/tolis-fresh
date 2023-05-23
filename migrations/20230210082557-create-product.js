@@ -22,7 +22,8 @@ module.exports = {
                 allowNull: false,
             },
             expired: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                allowNull: false,
             },
             image: {
                 type: Sequelize.STRING
@@ -36,7 +37,9 @@ module.exports = {
                 references: {
                     model: 'Categories',
                     key: 'id'
-                }
+                },
+                onUpdate: 'cascade',
+                onDelete: 'cascade'
             },
             PartnerId: {
                 type: Sequelize.INTEGER,
@@ -44,7 +47,9 @@ module.exports = {
                 references: {
                     model: 'Partners',
                     key: 'id'
-                }
+                },
+                onUpdate: 'cascade',
+                onDelete: 'cascade'
             },
             createdAt: {
                 allowNull: false,

@@ -1,0 +1,15 @@
+<% if (!locals.roleId || locals.roleId !== 1) { %>
+<footer>
+    <p>&copy 2023. <a href="/">TolisFresh</a> - <%= menu %></p>
+</footer>
+<% } %>
+
+<% if (locals.roleId === 1) { %>
+<footer>
+    <div> <br>
+        <a href="/roles"><button>Roles</button></a>
+        <a href="/users"><button>User</button></a>
+    </div>
+    <p>&copy 2023. <a href="/">TolisFresh</a> - <%= menu %></p>
+</footer>
+<% } %>

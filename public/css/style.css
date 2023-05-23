@@ -1,0 +1,18 @@
+.error {
+    color: #FF0000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between
+}
+
+.navigation {
+    display: flex;
+    gap: 10px;
+}
+
+.auth {
+    display: flex;
+    gap: 10px;
+}

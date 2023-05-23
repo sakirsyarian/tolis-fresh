@@ -1,4 +1,7 @@
 'use strict';
+
+const bycrypt = require('bcryptjs')
+
 const {
   Model
 } = require('sequelize');
@@ -16,13 +19,73 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    RoleId: DataTypes.INTEGER
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Username can't be null"
+        },
+        notEmpty: {
+          msg: "Username can't be empty"
+        },
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Email can't be null"
+        },
+        notEmpty: {
+          msg: "Email can't be empty"
+        },
+        isEmail: {
+          msg: "You must enter a valid email"
+        },
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Password can't be null"
+        },
+        notEmpty: {
+          msg: "Password can't be empty"
+        },
+      }
+    },
+    RoleId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Role can't be null"
+        },
+        notEmpty: {
+          msg: "Role can't be empty"
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'User',
   });
+
+  User.beforeCreate((user, options) => {
+    const salt = bycrypt.genSaltSync(10)
+    const hash = bycrypt.hashSync(user.password, salt)
+    user.password = hash
+  })
+
+  User.beforeUpdate((user, options) => {
+    const salt = bycrypt.genSaltSync(10)
+    const hash = bycrypt.hashSync(user.password, salt)
+    user.password = hash
+  })
+
   return User;
 };
