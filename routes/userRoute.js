@@ -32,4 +32,7 @@ router.get('/user-details/:id', UserController.userDetailFindAll)
 router.get('/user-details/edit/:id', UserController.userDetailEdit)
 router.post('/user-details/edit/:id', multerConfig.single('image'), UserController.userDetailUpdate)
 
+router.get('/settings', UserController.settingEdit)
+router.post('/settings', multerConfig.fields([{ name: "bannerOne" }, { name: "bannerTwo" }]), UserController.settingUpdate)
+
 module.exports = router

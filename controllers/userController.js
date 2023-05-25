@@ -4,7 +4,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
 
-const { UserDetail, User, Role } = require('../models')
+const { UserDetail, User, Role, Setting } = require('../models')
 
 const baseUrl = 'public/uploads/'
 
@@ -203,6 +203,79 @@ class UserController {
 
         User.destroy({ where: { id } })
             .then(_ => res.redirect('/users'))
+            .catch(err => res.send(err))
+    }
+
+    static settingEdit(req, res) {
+        const { userId } = res.locals
+        let dataMenu = {}
+        // res.send(res.locals)
+
+        User.findOne({ where: { id: userId }, include: UserDetail })
+            .then(user => {
+                dataMenu.user = user
+                return Setting.findByPk(1)
+            })
+            .then(setting => res.render('setting', { ...dataMenu, setting }))
+            .catch(err => res.send(err))
+    }
+
+    static settingUpdate(req, res) {
+        // res.send(req.files)
+        let filenameOne, filenameTwo
+
+        Setting.findByPk(1)
+            .then(setting => {
+                filenameOne = setting.bannerOne
+
+                if (req.files.bannerOne) filenameOne = req.files.bannerOne[0].filename
+                if (req.files.bannerTwo) filenameTwo = req.files.bannerTwo[0].filename
+
+                fs.access(`./${baseUrl}${setting.bannerOne}`, fs.constants.F_OK, (err) => {
+                    if (err) {
+                        console.log(chalk.red('file does not exist - error'));
+                        return;
+                    }
+
+                    const checkAvailability = path.extname(`./${baseUrl}${setting.bannerOne}`)
+                    if (!checkAvailability) {
+                        console.log(chalk.red('file does not exist - check available'));
+                        return
+                    }
+
+                    console.log(chalk.green(`There is a ${setting.bannerOne} file`));
+                    if (setting.bannerOne !== filenameOne) {
+                        fs.unlink(`${baseUrl}${setting.bannerOne}`, function (err) {
+                            if (err) throw err;
+                            console.log(chalk.red(`File ${setting.bannerOne} has been deleted!`));
+                        });
+                    }
+                });
+
+                fs.access(`./${baseUrl}${setting.bannerTwo}`, fs.constants.F_OK, (err) => {
+                    if (err) {
+                        console.log(chalk.red('file does not exist - error'));
+                        return;
+                    }
+
+                    const checkAvailability = path.extname(`./${baseUrl}${setting.bannerTwo}`)
+                    if (!checkAvailability) {
+                        console.log(chalk.red('file does not exist - check available'));
+                        return
+                    }
+
+                    console.log(chalk.green(`There is a ${setting.bannerTwo} file`));
+                    if (setting.bannerTwo !== filenameTwo) {
+                        fs.unlink(`${baseUrl}${setting.bannerTwo}`, function (err) {
+                            if (err) throw err;
+                            console.log(chalk.red(`File ${setting.bannerTwo} has been deleted!`));
+                        });
+                    }
+                });
+
+                return Setting.update({ bannerOne: filenameOne, bannerTwo: filenameTwo }, { where: { id: 1 } })
+            })
+            .then(_ => res.redirect('/settings'))
             .catch(err => res.send(err))
     }
 }

@@ -2,7 +2,7 @@
 
 const bycrypt = require('bcryptjs')
 const chalk = require('chalk')
-const { User, UserDetail, Product, Category, Partner, Client, Purchase } = require('../models')
+const { User, UserDetail, Product, Category, Partner, Client, Purchase, Setting } = require('../models')
 
 class Controller {
     static home(req, res) {
@@ -28,6 +28,10 @@ class Controller {
             })
             .then(clients => {
                 dataMenu.clients = clients
+                return Setting.findByPk(1)
+            })
+            .then(setting => {
+                dataMenu.setting = setting
                 res.render('home', { ...dataMenu, error, message })
             })
             .catch(err => res.send(err))
