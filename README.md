@@ -2,6 +2,10 @@
 
 Pada project website tolisfresh ini bertujuan untuk membuat layanan untuk menawarkan berbagai bahan baku makanan. Mulai dari anekan ayam, buah, sayur dan sembako. Saat ini pada website ini terdapat beberapa fitur yang bisa digunakan.
 
+![Landing page](front.png "Landing page")
+
+![Backend](back.png "Backend")
+
 ## Persyaratan
 
 Pastikan sebelumnya sudah menginstall node dan npm. Selain itu diperlukan juga nodemon, postgreSQL dan sequelize.
