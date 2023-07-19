@@ -1,14 +1,14 @@
 [
     {
         "username": "admin",
-        "email": "admin@gmail.com",
+        "email": "admin@email.com",
         "password": "admin",
         "RoleId": 1
     },
     {
-        "username": "sakirsyarian",
-        "email": "sakirsyarian@email.com",
-        "password": "sakirsyarian",
+        "username": "sarian",
+        "email": "sarian@email.com",
+        "password": "sarian",
         "RoleId": 2
     }
 ]

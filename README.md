@@ -12,13 +12,25 @@ Pastikan sebelumnya sudah menginstall node dan npm. Selain itu diperlukan juga n
 
 ## Instalasi
 
-Pertama install semua dependencie dengan carai seperti ini:
+Pastikan untuk menginstall sequelize dulu secara global
+
+```
+npm install -g sequelize-cli
+```
+
+Selain itu kalian juga harus install nodemon
+
+```
+npm install -g nodemon
+```
+
+Selanjutnya install semua dependencie dengan carai seperti ini:
 
 ```
 npm install
 ```
 
-Selanjutkan buat table database menggunakan sequelize
+Buatkan table database menggunakan sequelize
 
 ```
 sequelize db:migrate
