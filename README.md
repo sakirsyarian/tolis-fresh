@@ -30,7 +30,11 @@ Selanjutnya install semua dependencie dengan carai seperti ini:
 npm install
 ```
 
-Buatkan table database menggunakan sequelize
+Buatkan database dan tablenya menggunakan sequelize
+
+```
+sequelize db:create
+```
 
 ```
 sequelize db:migrate
