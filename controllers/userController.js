@@ -209,7 +209,6 @@ class UserController {
     static settingEdit(req, res) {
         const { userId } = res.locals
         let dataMenu = {}
-        // res.send(res.locals)
 
         User.findOne({ where: { id: userId }, include: UserDetail })
             .then(user => {
